@@ -1,0 +1,36 @@
+<section class="about-container">
+  <h2>Project Dashboard</h2>
+  
+  <div class="card">
+    <h3>Status: <span [class.ready]="isReady()">{{ status() }}</span></h3>
+    <p>Team Strength: <strong>{{ teamCount() }}</strong> Members</p>
+    
+    <div class="actions">
+      <button (click)="addMember()" [disabled]="isReady()">Add Member</button>
+      <button class="btn-finalize" (click)="finalize()" *ngIf="!isReady()">
+        Finalize Project
+      </button>
+    </div>
+  </div>
+
+  <div class="team-section">
+    <h4>Team Roster</h4>
+    <div class="list-container">
+      @for (person of team(); track person; let i = $index) {
+        <app-member-card 
+          [name]="person" 
+          (remove)="removeMember(i)">
+        </app-member-card>
+      } @empty {
+        <p class="empty-msg">No team members assigned yet.</p>
+      }
+    </div>
+  </div>
+
+  @if (lastUpdated()) {
+    <footer>
+      <hr>
+      <small>System Log: Updated at {{ lastUpdated() | date:'mediumTime' }}</small>
+    </footer>
+  }
+</section>

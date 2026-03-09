@@ -1,0 +1,10 @@
+<section class="counter-container">
+  <h1>Signals Counter</h1>
+  <p class="count-display">Count is: <strong>{{ count() }}</strong></p>
+  <p>Double is: {{ doubleCount() }}</p>
+
+  <div class="button-group">
+    <button (click)="increment()" class="btn">Add +1</button>
+    <button (click)="reset()" class="btn btn-reset">Reset</button>
+  </div>
+</section>
