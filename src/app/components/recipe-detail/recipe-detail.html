@@ -1,0 +1,15 @@
+<div>
+  <button (click)="addServedAmount('+')">+</button>
+  <button (click)="addServedAmount('-')">-</button>
+  <p>Served amount: {{ servedAmount() }}</p>
+</div>
+
+<p>{{ recipe().name }}</p>
+<p>{{ recipe().description }}</p>
+<p><img [src]="recipe().imgUrl" ></p>
+
+<div>
+  @for (ingredient of adjustedIngredients(); track ingredient.name) {
+  <p>{{ ingredient.name }}: {{ ingredient.quantity }} {{ ingredient.unit }}</p>
+  }
+</div>
