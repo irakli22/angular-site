@@ -1,15 +1,27 @@
-<div>
-  <button (click)="addServedAmount('+')">+</button>
-  <button (click)="addServedAmount('-')">-</button>
-  <p>Served amount: {{ servedAmount() }}</p>
-</div>
+<div class="container">
 
-<p>{{ recipe().name }}</p>
-<p>{{ recipe().description }}</p>
-<p><img [src]="recipe().imgUrl" ></p>
+  <div>
+    <button (click)="addServedAmount('+')">+</button>
+    <button (click)="addServedAmount('-')">-</button>
+    <p>Served amount: {{ servedAmount() }}</p>
+  </div>
+  <div>
+    <p class="name">{{ recipe().name }}
+      @if (recipe().isFavorite) {
+      <span>⭐</span>
+      }
+    </p>
+    <p class="description">{{ recipe().description }}</p>
+  </div>
 
-<div>
-  @for (ingredient of adjustedIngredients(); track ingredient.name) {
-  <p>{{ ingredient.name }}: {{ ingredient.quantity }} {{ ingredient.unit }}</p>
-  }
+
+  <div class="child-container">
+    <img class="image" [src]="recipe().imgUrl">
+
+    <div>
+      @for (ingredient of adjustedIngredients(); track ingredient.name) {
+      <p>{{ ingredient.name }}: {{ ingredient.quantity }} {{ ingredient.unit }}</p>
+      }
+    </div>
+  </div>
 </div>

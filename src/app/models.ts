@@ -8,6 +8,7 @@ export interface RecipeModel {
     name: string;
     description: string;
     imgUrl: string;
+    isFavorite: boolean; // Add this property
     ingredients: Ingredient[];
 }
 

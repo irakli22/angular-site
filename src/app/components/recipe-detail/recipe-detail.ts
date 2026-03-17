@@ -6,6 +6,7 @@ import { RecipeModel } from '../../models';
     standalone: true,
     selector: 'app-recipe-detail',
     templateUrl: './recipe-detail.html',
+    styleUrl: './recipe-detail.css'
 })
 export class RecipeDetail {
     recipe = input.required<RecipeModel>();

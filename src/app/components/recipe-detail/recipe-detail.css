@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.description {
+  color: #555;
+}
+
+.name, .description {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.image {
+      border-radius: 10px;
+}
+
+.child-container {
+  display: flex;
+  gap: 2rem;
+}
