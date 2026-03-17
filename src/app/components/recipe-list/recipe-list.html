@@ -1,12 +1,13 @@
-<button (click)="setRecipe(0)">Show Spaghetti</button>
-<button (click)="setRecipe(1)">Show Salad</button>
+<button (click)="setRecipe(recipes()[0])">Show Spaghetti</button>
+<button (click)="setRecipe(recipes()[1])">Show Salad</button>
 
 
-@for(item of recipe(); track recipe.name) {
-      @if(item.isFavorite) {
-      <p>⭐</p>
+<input [(ngModel)]="search" placeholder="search . . .">
+@for(foundRecipe of filteredRecipes(); track foundRecipe.id)
+{
+        <button (click)="setRecipe(foundRecipe)">
+          {{ foundRecipe.name }}
+        </button>
 }
-}
+
 <app-recipe-detail [recipe]="recipe()" />
-
-
