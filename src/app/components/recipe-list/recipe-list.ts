@@ -1,19 +1,20 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MOCK_RECIPES } from '../../mock-recipes';
+import { RecipeDataService } from '../../recipeData.service';
 import { RecipeModel } from '../../models';
 import { RecipeDetail } from '../recipe-detail/recipe-detail'
 
 @Component({
   standalone: true,
   selector: 'app-recipe-list',
-  imports: [RecipeDetail, FormsModule],
+  imports: [RecipeDetail, FormsModule, RouterLink],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.css',
 })
 export class RecipeList {
-  protected readonly recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
-  protected readonly recipes = signal<RecipeModel[]>(MOCK_RECIPES);
+  protected readonly recipe = signal(inject(RecipeDataService).getRecipes()[0]);
+  protected readonly recipes = signal(inject(RecipeDataService).getRecipes());
 
   protected search = signal("");
 

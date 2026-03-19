@@ -1,5 +1,5 @@
-<button (click)="setRecipe(recipes()[0])">Show Spaghetti</button>
-<button (click)="setRecipe(recipes()[1])">Show Salad</button>
+<button [routerLink]="['/recipes', recipes()[0].id]">Show Spaghetti</button>
+<button [routerLink]="['/recipes', recipes()[1].id]">Show Salad</button>
 
 
 <input [(ngModel)]="search" placeholder="search . . .">
@@ -9,5 +9,3 @@
           {{ foundRecipe.name }}
         </button>
 }
-
-<app-recipe-detail [recipe]="recipe()" />

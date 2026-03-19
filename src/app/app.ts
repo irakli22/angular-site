@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { RecipeList } from  './components/recipe-list/recipe-list'
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [RecipeList],
+  imports: [RouterModule],
 })
 export class AppComponent {
 

@@ -1,35 +1,35 @@
-import { Component, input, signal, computed, effect } from '@angular/core';
+import { Component, input, signal, computed, inject } from '@angular/core';
 import { RecipeModel } from '../../models';
+import { RecipeDataService } from '../../recipeData.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 
 @Component({
     standalone: true,
     selector: 'app-recipe-detail',
     templateUrl: './recipe-detail.html',
-    styleUrl: './recipe-detail.css'
+    styleUrl: './recipe-detail.css',
+    imports: [RouterLink]
 })
 export class RecipeDetail {
-    recipe = input.required<RecipeModel>();
-    protected servedAmount = signal<number>(1);
+    // 3. Inject them here!
+    private route = inject(ActivatedRoute);
+    private recipeService = inject(RecipeDataService);
 
-    protected addServedAmount(amount: '+' | '-') {
-        this.servedAmount.update(prev => amount === '+' ? prev + 1 : prev - 1);
+    // 4. Create a signal for the current recipe
+    protected readonly recipe = signal<RecipeModel | undefined>(undefined);
+    
+    constructor() {
+        // 5. When the component loads, get the ID from the URL
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        // 6. Use the service to find the recipe
+        const foundRecipe = this.recipeService.getRecipeById(id);
+
+        // 7. Update the signal
+        this.recipe.set(foundRecipe);
+        console.log(this.recipe())
     }
-
-    protected readonly adjustedIngredients = computed(() => {
-        // Access the current signals inside the function
-        const currentRecipe = this.recipe();
-        const servings = this.servedAmount();
-
-        // Return the new list by mapping over the ingredients
-        return currentRecipe.ingredients.map(ingredient => ({
-            ...ingredient,
-            quantity: ingredient.quantity * servings
-        }));
-    });
-     constructor() {
-    console.log("App is running!");
-  }
-
 }
+
+
 
